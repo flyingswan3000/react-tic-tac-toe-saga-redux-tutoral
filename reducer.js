@@ -7,8 +7,18 @@ const initState = {
 }
 
 const actionMap = {
-  'MARK': mark,
+  'SET_MARK': setMark,
+  'SET_X_IS_NEXT': setXIsNext,
   'RESET': reset
+}
+
+function setMark(state, {payload}) {
+  const newSquares = [...state.squares]
+  newSquares[payload.position] = payload.isX
+  return {...state, squares: newSquares}
+}
+function setXIsNext(state, {payload}) {
+  return {...state, xIsNext: payload.xIsNext}
 }
 
 const reducer = (state = initState, action) => {
